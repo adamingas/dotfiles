@@ -21,8 +21,9 @@ echo "$confirm_update"
 cd /home/cdsw
 curl -LOk https://github.com/neovim/neovim/releases/download/v0.8.3/nvim.appimage \
 && chmod u+x nvim.appimage \
-&& ./nvim.appimage --appimage-extract \
-&& mv /home/cdsw/squashfs-root/ /home/cdsw/.nvim \
+&& ./nvim.appimage --appimage-extract
+[ -d "$HOME/.nvim" ] && rm -r "$HOME/.nvim" 
+mv /home/cdsw/squashfs-root/ /home/cdsw/.nvim \
 && ln -s /home/cdsw/.nvim/AppRun ~/.local/bin/nvim \
 && echo "$(nvim --version)"
 [ ! -e "$HOME/.local/share/nvim/site/autoload/plug.vim" ] && curl -kfLo  ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
