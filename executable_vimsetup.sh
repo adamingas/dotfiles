@@ -23,7 +23,7 @@ curl -LOk https://github.com/neovim/neovim/releases/download/v0.8.3/nvim.appimag
 && chmod u+x nvim.appimage \
 && ./nvim.appimage --appimage-extract \
 && mv /home/cdsw/squashfs-root/ /home/cdsw/.nvim \
-&& ln -s /home/cdsw/.nvim/AppRun ~/.local/bin/nvim \ 
+&& ln -s /home/cdsw/.nvim/AppRun ~/.local/bin/nvim \
 && echo "$(nvim --version)"
 [ ! -e "$HOME/.local/share/nvim/site/autoload/plug.vim" ] && curl -kfLo  ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 		    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
