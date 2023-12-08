@@ -30,6 +30,7 @@ mv /home/cdsw/squashfs-root/ /home/cdsw/.nvim \
 		    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 pip3 install neovim
+pip3 instal python-language-server
 [ ! -d "$HOME/.config/nvim" ] && mkdir -p ~/.config/nvim/
 nvim +PlugInstall +qall
 
