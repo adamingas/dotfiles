@@ -31,4 +31,5 @@ mv /home/cdsw/squashfs-root/ /home/cdsw/.nvim \
 
 pip3 install neovim
 [ ! -d "$HOME/.config/nvim" ] && mkdir -p ~/.config/nvim/
+nvim +PlugInstall +qall
 
