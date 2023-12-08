@@ -8,6 +8,7 @@ set mouse=a
 " set conceallevel=2
 
 
+let g:python3_host_prog='/home/cdsw/.conda/envs/nvim/bin/python'
 let $LUACONFIG='$HOME/.config/nvim/lua/config.lua'
 let g:vimteractive_default_shells = { 'python': 'ipython' }
 " let g:vimteractive_default_shells = { 'ipython': 'ipython3' }
@@ -27,7 +28,7 @@ call plug#begin()
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'tag': 'v0.8.3','do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-lua/plenary.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
