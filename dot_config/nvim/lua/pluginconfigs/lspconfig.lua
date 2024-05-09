@@ -27,7 +27,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
 end
 
@@ -43,10 +43,32 @@ local servers = {
     -- 'pyright',
     'pylsp'
 }
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--   }
+-- end
+
+lspconfig['pylsp'].setup{
+    cmd = {"/Users/u1078811/mambaforge/envs/nvim/bin/pylsp"},
     on_attach = on_attach,
     capabilities = capabilities,
-  }
-end
-
+    pylsp = {
+        plugins = {
+            ruff = {
+                enabled = true,
+                unsafe_fixes = true,
+                formatEnabled = true,
+                format = {'I' , 'F'},
+                line_length = 90
+            },
+            jedi = {
+                auto_import_modules = {'pandas','numpy'}
+            }
+        }
+    }
+}
+-- lspconfig['ltex'].setup{
+--     filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc" ,"vimwiki"}
+-- }
+lspconfig["jsonls"].setup{}
+vim.lsp.set_log_level("debug")

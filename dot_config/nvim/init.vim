@@ -5,16 +5,21 @@ let mapleader=' '
 set mouse=a
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
-" set conceallevel=2
+autocmd BufReadPost,FileReadPost * normal zR
+set conceallevel=2
+set foldlevelstart=99
+set linebreak
 
 
-let g:python3_host_prog='/home/cdsw/.conda/envs/nvim/bin/python'
 let $LUACONFIG='$HOME/.config/nvim/lua/config.lua'
 let g:vimteractive_default_shells = { 'python': 'ipython' }
 " let g:vimteractive_default_shells = { 'ipython': 'ipython3' }
 let g:vimteractive_commands = { 'ipython': 'ipython3' }
 let g:vimteractive_bracketed_paste_default = 0
 let g:neoterm_default_mod='botright'
+let g:python3_host_prog = '/Users/u1078811/mambaforge/envs/nvim/bin/python'
+
+
 
 
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -25,10 +30,14 @@ endif
 
 call plug#begin()
 " Plug 'williamjameshandley/vimteractive'
+Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'stevearc/aerial.nvim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
-Plug 'nvim-treesitter/nvim-treesitter', {'tag': 'v0.8.3','do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-treesitter/nvim-treesitter-context'
+
 Plug 'nvim-lua/plenary.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/nvim-cmp' " Autocompletion plugin
@@ -43,16 +52,23 @@ Plug 'kassio/neoterm'
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'ElPiloto/telescope-vimwiki.nvim'
-
-" Plug 'lervag/wiki.vim'
+Plug 'windwp/nvim-autopairs'
 Plug 'mattn/calendar-vim'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'rafamadriz/neon' 
 Plug 'tomasiser/vim-code-dark'
-Plug 'preservim/vim-markdown'
+" Plug 'preservim/vim-markdown'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'vimwiki/vimwiki', { 'branch': 'dev'}
 Plug 'justinmk/vim-sneak'
+Plug 'tools-life/taskwiki'
+" LSP provider for other programs
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'nvim-tree/nvim-web-devicons'
+
 call plug#end()
 
 "set rtp+=~/.vim/bundle/Vundle.vim
@@ -136,18 +152,31 @@ lua require('config')
 " Wiki config
 " let g:calendar_diary='~/vimwiki/journal'
 " g:calendar_action=
-let g:markdown_folding = 1
 let g:wiki_root = '~/vimwiki'
+au BufNewFile ~/vimwiki/diary/*.md :silent 0r !~/vimwiki/diary_template.py '%'
+
+function! OpenChromium()
+  silent ! open -a 'Google chrome' "file://%:p"
+  redraw! 
+endfunction
+
+function! OpenFirefox()
+  silent ! open -a 'Firefox' "file://%:p"
+  redraw! 
+endfunction
 
 " vimwiki settings
+let g:vimwiki_global_ext=0
 let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
+                      \ 'syntax': 'markdown', 'ext': '.md',
+                      \ 'links_space_char': '_'}]
+let g:vimwiki_filetypes = []
 nmap <leader>w<leader>h <Plug>VimwikiDiaryPrevDay`
 nmap <leader>w<leader>l <Plug>VimwikiDiaryNextDay`
 nmap <leader>d <Plug>VimwikiToggleListItem
 vmap <leader>d <Plug>VimwikiToggleListItem
+nmap <leader>v :call OpenFirefox()<CR>
 " Colors, this really should be in a different script but whatever
 hi link VimwikiHeader1 htmlH1
 hi link VimwikiHeader2 htmlH2
 hi link VimwikiHeader3 htmlH3
-let g:wiki_filetypes = ['md', 'wiki']

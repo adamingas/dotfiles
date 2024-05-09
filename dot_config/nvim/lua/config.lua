@@ -1,6 +1,12 @@
 require('pluginconfigs.lspconfig')
+require('pluginconfigs.aerial')
+require('pluginconfigs.lualine')
 require('pluginconfigs.telescope')
 require('pluginconfigs.nvimcmp')
+require('pluginconfigs.nullls')
+require("nvim-autopairs").setup()
+require('ibl').setup()
+
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "python", "lua"},
@@ -34,8 +40,17 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "<CR>", -- set to `false` to disable one of the mappings
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
     playground = {
-            enable = false,
+            enable = true,
             disable = {},
         updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
         persist_queries = false, -- Whether the query persists across vim sessions
@@ -50,6 +65,7 @@ require'nvim-treesitter.configs'.setup {
           update = 'R',
           goto_node = '<cr>',
           show_help = '?',
+    }
     },
       rainbow = {
         enable = true,
@@ -58,8 +74,8 @@ require'nvim-treesitter.configs'.setup {
         max_file_lines = nil, -- Do not enable for files with more than n lines, int
         -- colors = {}, -- table of hex strings
         -- termcolors = {} -- table of colour name strings
-      }
-
   }
 
 }
+
+
