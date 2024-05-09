@@ -19,7 +19,7 @@ echo "$confirm_update"
 # [ ! -d "$HOME/.nvim" ] && echo 'Nvim not present' && 
 # TODO: Specify version to update to
 cd /home/cdsw
-curl -LOk https://github.com/neovim/neovim/releases/download/v0.8.3/nvim.appimage \
+curl -LOk https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage \
 && chmod u+x nvim.appimage \
 && ./nvim.appimage --appimage-extract
 [ -d "$HOME/.nvim" ] && rm -r "$HOME/.nvim" 
