@@ -49,7 +49,7 @@ local servers = {
 -- end
 
 lspconfig['pylsp'].setup{
-    cmd = {"/Users/u1078811/mambaforge/envs/nvim/bin/pylsp"},
+    cmd = {string.sub(vim.g.python3_host_prog,0,-7) .. 'pylsp'}, -- {"/Users/u1078811/mambaforge/envs/nvim/bin/pylsp"},
     on_attach = on_attach,
     capabilities = capabilities,
     pylsp = {
