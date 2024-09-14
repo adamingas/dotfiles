@@ -7,8 +7,9 @@ set mouse=a
 " set foldexpr=nvim_treesitter#foldexpr()
 autocmd BufReadPost,FileReadPost * normal zR
 set conceallevel=2
-set foldlevelstart=99
+set foldlevel=99
 set linebreak
+set ignorecase
 
 
 let $LUACONFIG='$HOME/.config/nvim/lua/config.lua'
@@ -29,6 +30,8 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+" Firevim which enables vim in the browser
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Plug 'williamjameshandley/vimteractive'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'stevearc/aerial.nvim'
@@ -50,7 +53,7 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'rafamadriz/friendly-snippets'
 Plug 'kassio/neoterm'
 Plug 'nvim-treesitter/playground'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
 Plug 'ElPiloto/telescope-vimwiki.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'mattn/calendar-vim'
@@ -68,6 +71,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'nvim-tree/nvim-web-devicons'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -108,6 +112,7 @@ set splitbelow
 set splitright
 set signcolumn=yes
 set updatetime=100
+
 
 augroup highlight_yank
     autocmd!
@@ -180,3 +185,10 @@ nmap <leader>v :call OpenFirefox()<CR>
 hi link VimwikiHeader1 htmlH1
 hi link VimwikiHeader2 htmlH2
 hi link VimwikiHeader3 htmlH3
+
+function! ConvertToWord()
+    let l:file = expand('%:p')
+    let l:file = substitute(l:file, '\.md$', '.docx', '')
+    let l:cmd = 'pandoc -s ' . expand('%:p') . ' -o ' . l:file
+    call system(l:cmd)
+endfunction

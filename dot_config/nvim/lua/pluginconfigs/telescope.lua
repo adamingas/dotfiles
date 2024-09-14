@@ -17,6 +17,11 @@ vim.keymap.set('n', '<leader>wf', vimtele.vimwiki, {})
 vim.keymap.set('n', '<leader>wg', vimtele.live_grep, {})
 
 telescope.setup({
+  mappings = {
+        n = {
+             ["<C-d>"] = require('telescope.actions').delete_buffer
+        }
+    },
   extensions = {
     aerial = {
       -- Display symbols as <root>.<parent>.<symbol>

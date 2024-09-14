@@ -79,3 +79,19 @@ require'nvim-treesitter.configs'.setup {
 }
 
 
+
+-- copilot settings
+vim.keymap.set('i', '<M-Down>', 'copilot#Accept("\\<CR>")', {
+          expr = true,
+          replace_keycodes = false
+        })
+vim.keymap.set('i', '<M-Tab>', 'copilot#Accept("\\<CR>")', {
+          expr = true,
+          replace_keycodes = false
+        })
+if vim.g.started_by_firenvim == true then
+  vim.o.laststatus = 0
+  vim.opt_local.spell = false
+else
+  vim.o.laststatus = 2
+end
