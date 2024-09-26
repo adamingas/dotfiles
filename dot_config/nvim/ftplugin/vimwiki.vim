@@ -1,0 +1,10 @@
+let g:vim_markdown_folding_disabled=1
+let g:taskwiki_dont_preserve_folds='yes'
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vimwiki_markdown_link_ext = 1
+set filetype=vimwiki.pandoc
+" let g:vimwiki_folding='custom'
+" setlocal foldlevelstart=99
+" setlocal foldmethod=expr
+" " let g:markdown_folding=1
+" let g:vimwiki_commentstring="<!--%s-->"
