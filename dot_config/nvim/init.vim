@@ -18,7 +18,7 @@ let g:vimteractive_default_shells = { 'python': 'ipython' }
 let g:vimteractive_commands = { 'ipython': 'ipython3' }
 let g:vimteractive_bracketed_paste_default = 0
 let g:neoterm_default_mod='botright'
-let g:python3_host_prog = '/Users/u1078811/mambaforge/envs/nvim/bin/python'
+let g:python3_host_prog = $HOME .. '/.local/share/pynvim/bin/python'
 
 
 
@@ -147,7 +147,6 @@ let g:neon_style='dark'
 let g:neon_transparent=0
 let g:neon_italic_keyword=1
 let g:neon_italic_function=1
-" colorscheme tokyonight-dark
 colorscheme codedark
 " colorscheme vscode
 

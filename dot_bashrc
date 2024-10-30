@@ -1,38 +1,12 @@
-export HOMEBREW_NO_AUTO_UPDATE=1
 export EDITOR=nvim
-export PATH=$PATH:/Users/u1078811/user_programs/ltex-ls-16.0.0/bin/
+alias vim=nvim
 
 export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/u1078811/mambaforge/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/u1078811/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/Users/u1078811/mambaforge/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/u1078811/mambaforge/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/Users/u1078811/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/Users/u1078811/mambaforge/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-export DEEPINFRA_TOKEN="qUmEpeBIKb14PXzYi3RmIZCkyHkumSc5"
-export GROQ_TOKEN="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"
-export PATH="/Users/u1078811/.local/share/bin:$PATH"
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-
 . "$HOME/.cargo/env"
-
-# Created by `pipx` on 2024-09-13 21:16:17
-export PATH="$PATH:/Users/u1078811/.local/bin"

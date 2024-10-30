@@ -56,7 +56,7 @@ end
 
 
 lspconfig['pylsp'].setup{
-    cmd = {string.sub(vim.g.python3_host_prog,0,-7) .. 'pylsp','--log-file', '/Users/u1078811/pylsp.log'}, -- {"/Users/u1078811/mambaforge/envs/nvim/bin/pylsp"},
+    cmd = {string.sub(vim.g.python3_host_prog,0,-7) .. 'pylsp','--log-file', vim.env.HOME ..'/pylsp.log'}, -- {"/Users/u1078811/mambaforge/envs/nvim/bin/pylsp"},
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
