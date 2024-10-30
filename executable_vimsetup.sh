@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "export PATH=$PATH:$HOME/bin/" >> $HOME/.bashrc
 export GIT_SSL_NO_VERIFY=1
 path_to_nvim=$(which nvim)
 if [ -x "$path_to_nvim" ] ; then
@@ -18,19 +19,18 @@ fi
 echo "$confirm_update"
 # [ ! -d "$HOME/.nvim" ] && echo 'Nvim not present' && 
 # TODO: Specify version to update to
-cd /home/cdsw
-curl -LOk https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage \
-&& chmod u+x nvim.appimage \
+cd $HOME
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage \
+&& chmod +x nvim.appimage \
 && ./nvim.appimage --appimage-extract
 [ -d "$HOME/.nvim" ] && rm -r "$HOME/.nvim" 
-mv /home/cdsw/squashfs-root/ /home/cdsw/.nvim \
-&& ln -s /home/cdsw/.nvim/AppRun ~/.local/bin/nvim \
+[ ! -d "$HOME/bin" ] && mkdir -p "$HOME/bin"
+mv $HOME/squashfs-root/ $HOME/.nvim \
+&& ln -s $HOME/.nvim/AppRun ~/bin/nvim \
 && echo "$(nvim --version)"
 [ ! -e "$HOME/.local/share/nvim/site/autoload/plug.vim" ] && curl -kfLo  ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 		    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-pip3 install neovim
-pip3 instal python-language-server
+pip3 install neovim python-lsp-server pylsp-mypy python-pylsp-ruff
 [ ! -d "$HOME/.config/nvim" ] && mkdir -p ~/.config/nvim/
 nvim +PlugInstall +qall
-
