@@ -9,4 +9,27 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 
-. "$HOME/.cargo/env"
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS:$HOME/bin"
+
+. "$HOME/.local/bin/env"
+parse_git_branch() {
+  git branch 2>/dev/null | grep '^*' | sed 's/^* //'
+}
+YELLOW='\[\033[0;33m\]'
+BLUE='\[\033[0;34m\]'
+GREEN='\[\033[0;32m\]'
+CYAN='\[\033[0;36m\]'
+RESET='\[\033[0m\]'
+git_branch() {
+    local branch=$(parse_git_branch)
+    if [ -n "$branch" ]; then
+        echo " ($branch)"
+    fi
+}
+
+PS1='\u:'"${GREEN}"'\w'"${CYAN}"'$(git_branch)'"${RESET}"'$ '
+# PS1='🫵:'"${GREEN}"'\w'"${RESET}"'$\040'
+# PS1="🫵:${GREEN}\w${CYAN}\$(branch=\$(parse_git_branch); if [ -n "$branch" ]; then echo \" (\$branch)\"; fi)${RESET}\\$ "
+# PS1="🫵:${GREEN}\w${CYAN}\$(branch=\$(parse_git_branch); if [ -n \"\$branch\" ]; then echo \" (\$branch)\"; fi)${RESET}\\$ "
+# PS1='\[🫵:\]'"${GREEN}"'\[\w\]'"${CYAN}"'\[$(branch=$(parse_git_branch); if [ -n "$branch" ]; then echo " ($branch)"; fi)\]'"${RESET}"'\$ '
+# PS1="${CYAN}\u@\h${RESET}:${BLUE}\w${YELLOW}\$(branch=\$(parse_git_branch); if [ -n \"\$branch\" ]; then echo \" (\$branch)\"; fi)${RESET}\\$ "

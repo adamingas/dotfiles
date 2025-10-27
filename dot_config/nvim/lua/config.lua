@@ -3,7 +3,6 @@ require('pluginconfigs.aerial')
 require('pluginconfigs.lualine')
 require('pluginconfigs.telescope')
 require('pluginconfigs.nvimcmp')
-require('pluginconfigs.nullls')
 require("nvim-autopairs").setup()
 require('ibl').setup()
 
@@ -27,7 +26,7 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
 		  -- `false` will disable the whole extension
     enable = true,
-    disable = {'markdown','markdown_inline'},
+    -- disable = {'markdown'},
 
     -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
     -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
@@ -67,28 +66,32 @@ require'nvim-treesitter.configs'.setup {
           show_help = '?',
     }
     },
-      rainbow = {
-        enable = true,
-        -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
-        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-        max_file_lines = nil, -- Do not enable for files with more than n lines, int
-        -- colors = {}, -- table of hex strings
-        -- termcolors = {} -- table of colour name strings
-  }
+      -- rainbow = {
+      --   enable = true,
+      --   -- disable = { "jsx", "cpp" }, list of languages you want to disable the plugin for
+      --   extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+      --   max_file_lines = nil, -- Do not enable for files with more than n lines, int
+      --   -- colors = {}, -- table of hex strings
+      --   -- termcolors = {} -- table of colour name strings
+  -- }
 
 }
 
 
+vim.keymap.set("t","<C-Bslash>", "<cmd>:Ttoggle<cr>")
+vim.keymap.set("n","<C-Bslash>", "<cmd>:Ttoggle<cr>")
+vim.keymap.set("t","<C-`>", "<cmd>:Ttoggle<cr>")
+vim.keymap.set("n","<C-`>", "<cmd>:Ttoggle<cr>")
 
--- copilot settings
-vim.keymap.set('i', '<M-Down>', 'copilot#Accept("\\<CR>")', {
-          expr = true,
-          replace_keycodes = false
-        })
-vim.keymap.set('i', '<M-Tab>', 'copilot#Accept("\\<CR>")', {
-          expr = true,
-          replace_keycodes = false
-        })
+vim.keymap.set("t","<C-k>", "<cmd>:TmuxNavigateUp<cr>")
+vim.keymap.set("t","<C-j>", "<cmd>:TmuxNavigateDown<cr>")
+vim.keymap.set("t","<C-h>", "<cmd>:TmuxNavigateLeft<cr>")
+vim.keymap.set("t","<C-l>", "<cmd>:TmuxNavigateRight<cr>")
+
+vim.keymap.set("n","<C-k>", "<cmd>:TmuxNavigateUp<cr>")
+vim.keymap.set("n","<C-j>", "<cmd>:TmuxNavigateDown<cr>")
+vim.keymap.set("n","<C-h>", "<cmd>:TmuxNavigateLeft<cr>")
+vim.keymap.set("n","<C-l>", "<cmd>:TmuxNavigateRight<cr>")
 if vim.g.started_by_firenvim == true then
   vim.o.laststatus = 0
   vim.opt_local.spell = false

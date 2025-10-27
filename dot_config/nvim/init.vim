@@ -30,6 +30,7 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+Plug 'christoomey/vim-tmux-navigator'
 " Firevim which enables vim in the browser
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 " Plug 'williamjameshandley/vimteractive'
@@ -40,6 +41,7 @@ Plug 'tpope/vim-commentary'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/nvim-treesitter-context'
+Plug 'https://gitlab.com/HiPhish/rainbow-delimiters.nvim'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'neovim/nvim-lspconfig'
@@ -58,7 +60,6 @@ Plug 'ElPiloto/telescope-vimwiki.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'mattn/calendar-vim'
 Plug 'Mofiqul/vscode.nvim'
-Plug 'p00f/nvim-ts-rainbow'
 Plug 'rafamadriz/neon' 
 Plug 'tomasiser/vim-code-dark'
 " Plug 'preservim/vim-markdown'
@@ -71,7 +72,6 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 " If you want to have icons in your statusline choose one of these
 Plug 'nvim-tree/nvim-web-devicons'
-Plug 'github/copilot.vim'
 
 call plug#end()
 
@@ -116,7 +116,7 @@ set updatetime=100
 
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank()
+    autocmd TextYankPost * silent! lua require'vim.hl'.on_yank()
 augroup END
 
 " Remaps
@@ -157,7 +157,7 @@ lua require('config')
 " let g:calendar_diary='~/vimwiki/journal'
 " g:calendar_action=
 let g:wiki_root = '~/vimwiki'
-au BufNewFile ~/vimwiki/diary/*.md :silent 0r !~/vimwiki/diary_template.py '%'
+au BufNewFile ~/vimwiki/diary/*.md :silent 0r !~/vimwiki/taskwiki_diary_template '%'
 
 function! OpenChromium()
   silent ! open -a 'Google chrome' "file://%:p"
