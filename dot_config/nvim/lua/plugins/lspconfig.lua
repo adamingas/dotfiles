@@ -87,12 +87,13 @@ return {
 			vim.lsp.config('ty', {
 				settings = {
 					ty = {
-						disableLanguageServices = true,
+						disableLanguageServices = false,
 					},
 				},
 			})
 			vim.lsp.config('ruff',{})
-			vim.lsp.enable({ 'basedpyright', 'lua_ls', 'ruff', 'ty' })
+			vim.lsp.config("json-lsp",{})
+			vim.lsp.enable({'lua_ls', 'ruff', 'ty', 'json-lsp', 'terraformls'})
 		end
 	},
 
@@ -101,7 +102,9 @@ return {
 		-- optional: provides snippets for the snippet source
 		dependencies = { 'rafamadriz/friendly-snippets' },
 
-		enabled = function() return not vim.tbl_contains({"markdown","vimwiki"}, vim.bo.filetype)  end,
+		enabled = function()
+			return not vim.tbl_contains({ "markdown", "vimwiki" }, vim.bo.filetype)
+		end,
 		-- use a release tag to download pre-built binaries
 		version = '1.*',
 		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
