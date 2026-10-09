@@ -1,0 +1,13 @@
+[project]
+name = "neovim-python-provider"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pynvim>=0.6",
+    "tasklib>=2.4.3",
+    "six>=1.16",
+    "packaging>=24",
+]
+
+[tool.uv]
+package = false
