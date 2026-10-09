@@ -1,0 +1,48 @@
+
+export PATH="/Users/ext-adamos.spanashis/bin:$PATH"
+export PATH="/Users/ext-adamos.spanashis/go/bin:$PATH"
+export PATH="/Users/ext-adamos.spanashis/CodexProfiles/bin:$PATH"
+
+export PATH="/Users/ext-adamos.spanashis/.local/bin:$PATH"
+export PATH="$GOBIN:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/ext-adamos.spanashis/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Added by Antigravity
+export PATH="/Users/ext-adamos.spanashis/.antigravity/antigravity/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+alias ls="ls -l --color"
+
+source /Users/ext-adamos.spanashis/.aliases.zsh
+
+# bun completions
+[ -s "/Users/ext-adamos.spanashis/.bun/_bun" ] && source "/Users/ext-adamos.spanashis/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+. "$HOME/.cargo/env"
+
+export EDITOR="nvim"
+fpath=("$HOME/.zsh/completions" $fpath)
+autoload -Uz compinit
+compinit
+
+# Coloured prompt: current directory and Git branch.
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' formats ' %F{magenta}git:(%b)%f'
+zstyle ':vcs_info:git:*' actionformats ' %F{magenta}git:(%b|%a)%f'
+precmd() { vcs_info }
+PROMPT='%F{cyan}%1~%f${vcs_info_msg_0_} %F{green}❯%f '
