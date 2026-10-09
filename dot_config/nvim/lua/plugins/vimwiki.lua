@@ -14,7 +14,7 @@ return { {
 			{
 				pattern = vim.fn.expand("~") .. "/vimwiki/diary/*.md",
 				callback = function()
-					vim.cmd("silent 0r !~/vimwiki/scripts/taskwiki_diary_template.py '%'")
+					vim.cmd("silent 0r !" .. vim.fn.expand("~") .. "/.config/nvim/scripts/taskwiki_diary_template.py '%'")
 				end,
 			})
 		vim.g.vimwiki_global_ext = 0
