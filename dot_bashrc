@@ -33,3 +33,16 @@ PS1='\u:'"${GREEN}"'\w'"${CYAN}"'$(git_branch)'"${RESET}"'$ '
 # PS1="🫵:${GREEN}\w${CYAN}\$(branch=\$(parse_git_branch); if [ -n \"\$branch\" ]; then echo \" (\$branch)\"; fi)${RESET}\\$ "
 # PS1='\[🫵:\]'"${GREEN}"'\[\w\]'"${CYAN}"'\[$(branch=$(parse_git_branch); if [ -n "$branch" ]; then echo " ($branch)"; fi)\]'"${RESET}"'\$ '
 # PS1="${CYAN}\u@\h${RESET}:${BLUE}\w${YELLOW}\$(branch=\$(parse_git_branch); if [ -n \"\$branch\" ]; then echo \" (\$branch)\"; fi)${RESET}\\$ "
+
+
+# bash-completion (Homebrew)
+if [ -f /opt/homebrew/etc/profile.d/bash_completion.sh ]; then
+  . /opt/homebrew/etc/profile.d/bash_completion.sh
+elif [ -f /usr/local/etc/profile.d/bash_completion.sh ]; then
+  . /usr/local/etc/profile.d/bash_completion.sh
+fi
+
+# sops completion fallback
+if [ -f "$HOME/.local/share/bash-completion/completions/sops" ]; then
+  . "$HOME/.local/share/bash-completion/completions/sops"
+fi
