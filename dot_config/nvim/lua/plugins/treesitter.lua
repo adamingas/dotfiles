@@ -11,9 +11,6 @@ return {
 		lazy = false,
 		branch = 'main',
 		build = ':TSUpdate',
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
 		main = "nvim-treesitter",
 		init = function()
 			local attempted = {}
@@ -53,17 +50,6 @@ return {
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
-			textobjects = {
-				select = {
-					enable = true,
-					keymaps = {
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
-						["ac"] = "@class.outer",
-						["ic"] = "@class.inner",
-					},
-				},
-			},
 			rainbow = {
 				enable = true,
 				extended_mode = true,
@@ -74,6 +60,30 @@ return {
 				enable_autocmd = false,
 			},
 		}
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("nvim-treesitter-textobjects").setup({
+				select = { lookahead = true },
+			})
+
+			local select = require("nvim-treesitter-textobjects.select")
+			vim.keymap.set({ "x", "o" }, "af", function()
+				select.select_textobject("@function.outer", "textobjects")
+			end, { desc = "Select around function" })
+			vim.keymap.set({ "x", "o" }, "if", function()
+				select.select_textobject("@function.inner", "textobjects")
+			end, { desc = "Select inside function" })
+			vim.keymap.set({ "x", "o" }, "ac", function()
+				select.select_textobject("@class.outer", "textobjects")
+			end, { desc = "Select around class" })
+			vim.keymap.set({ "x", "o" }, "ic", function()
+				select.select_textobject("@class.inner", "textobjects")
+			end, { desc = "Select inside class" })
+		end,
 	},
 	{ "https://gitlab.com/HiPhish/rainbow-delimiters.nvim" },
 	{

@@ -93,7 +93,7 @@ return {
 			})
 			vim.lsp.config('ruff',{})
 			vim.lsp.config("json-lsp",{})
-			vim.lsp.enable({'lua_ls', 'ruff', 'ty', 'json-lsp', 'terraformls'})
+			vim.lsp.enable({'lua_ls', 'ruff', 'ty', 'json-lsp', 'terraformls', "nixd"})
 		end
 	},
 
@@ -115,6 +115,7 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			signature = { enabled = true },
 			-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
 			-- 'super-tab' for mappings similar to vscode (tab to accept)
 			-- 'enter' for enter to accept

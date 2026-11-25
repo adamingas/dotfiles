@@ -46,3 +46,6 @@ zstyle ':vcs_info:git:*' formats ' %F{magenta}git:(%b)%f'
 zstyle ':vcs_info:git:*' actionformats ' %F{magenta}git:(%b|%a)%f'
 precmd() { vcs_info }
 PROMPT='%F{cyan}%1~%f${vcs_info_msg_0_} %F{green}❯%f '
+
+# Added by the Hunk installer (https://hunk.dev)
+export PATH='/Users/ext-adamos.spanashis/.hunk/bin':"$PATH"
